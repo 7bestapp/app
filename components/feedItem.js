@@ -5,6 +5,7 @@ import {
   Text,
   View,
   Platform,
+  Image,
 } from 'react-native';
 
 export default FeedItem = ({ feed, index }) => {
@@ -13,6 +14,10 @@ export default FeedItem = ({ feed, index }) => {
     <View style={styles.feedCard}>
       <View style={styles.cardHeader}>
         <View style={styles.cardUser}>
+          <Image
+            style={styles.userImage}
+            source={{uri: feed.image}}
+          />
           <Text style={styles.user}>{feed.user}</Text>
         </View>
         <View style={styles.cardDate}>
@@ -62,21 +67,33 @@ const styles = StyleSheet.create({
     }),
   },
   cardHeader: {
-    padding: 15,
+    padding: 10,
     flexDirection: 'row',
     borderBottomColor: '#F4F4F4',
     borderBottomWidth: 1,
   },
   cardUser: {
     flex: 3,
+    flexDirection: 'row'
   },
   user: {
+    padding: 5,
+    paddingLeft: 10,
     fontFamily: 'Roboto',
     fontSize: 16,
     fontWeight: 'bold',
   },
+  userImage: {
+    height: 35,
+    width: 35,
+    borderBottomLeftRadius: 4,
+    borderBottomRightRadius: 4,
+    borderTopLeftRadius: 4,
+    borderTopRightRadius: 4,
+  },
   cardDate: {
     flex: 1,
+    padding: 5,
     alignItems: 'flex-end',
   },
   date: {

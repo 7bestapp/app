@@ -4,7 +4,8 @@ import {
   View,
   ScrollView,
   ActivityIndicator,
-  StyleSheet
+  StyleSheet,
+  Image
 } from 'react-native';
 
 import FeedItem from '../components/feedItem.js';
@@ -18,6 +19,7 @@ export default class Profile extends React.Component {
       feed_items: [
         {
           user: 'Timo Trumpp',
+          image: 'https://lh3.googleusercontent.com/-3NrXY56sup0/AAAAAAAAAAI/AAAAAAAAAAA/AAnnY7o763BeCFp-H6oUUOCwe2qEik0WoA/s192-c-mo/photo.jpg',
           date: 'Gestern',
           workout: 'FOX | ORIGINAL',
           time: '23:22',
@@ -27,6 +29,7 @@ export default class Profile extends React.Component {
         },
         {
           user: 'Timo Trumpp',
+          image: 'https://lh3.googleusercontent.com/-3NrXY56sup0/AAAAAAAAAAI/AAAAAAAAAAA/AAnnY7o763BeCFp-H6oUUOCwe2qEik0WoA/s192-c-mo/photo.jpg',
           date: '3 Tage',
           workout: 'HYENA | ORIGINAL',
           time: '19:51',
@@ -36,6 +39,7 @@ export default class Profile extends React.Component {
         },
         {
           user: 'Timo Trumpp',
+          image: 'https://lh3.googleusercontent.com/-3NrXY56sup0/AAAAAAAAAAI/AAAAAAAAAAA/AAnnY7o763BeCFp-H6oUUOCwe2qEik0WoA/s192-c-mo/photo.jpg',
           date: '10 Tage',
           workout: 'WOLF | ORIGINAL',
           time: '24:58',
@@ -45,6 +49,7 @@ export default class Profile extends React.Component {
         },
         {
           user: 'Timo Trumpp',
+          image: 'https://lh3.googleusercontent.com/-3NrXY56sup0/AAAAAAAAAAI/AAAAAAAAAAA/AAnnY7o763BeCFp-H6oUUOCwe2qEik0WoA/s192-c-mo/photo.jpg',
           date: '15 Tage',
           workout: 'FOX | ORIGINAL',
           time: '23:22',
@@ -93,8 +98,14 @@ export default class Profile extends React.Component {
     return(
       <ScrollView style={{flex: 1, flexDirection: 'column', backgroundColor: '#E5E5E5'}}>
         <View style={styles.profileHeader}>
-          <Text style={[styles.headerText, styles.boldText]}>Timo Trumpp</Text>
-          <Text style={styles.baseText}>TSV RSK Esslingen, C-Jugend</Text>
+          <Image
+            style={styles.profileImage}
+            source={{uri:'https://lh3.googleusercontent.com/-3NrXY56sup0/AAAAAAAAAAI/AAAAAAAAAAA/AAnnY7o763BeCFp-H6oUUOCwe2qEik0WoA/s192-c-mo/photo.jpg'}}
+          />
+          <View style={styles.profileName}>
+            <Text style={[styles.headerText, styles.boldText]}>Timo Trumpp</Text>
+            <Text style={styles.baseText}>TSV RSK Esslingen, C-Jugend</Text>
+          </View>
         </View>
         <View style={styles.bioHeader}>
           <Text style={[styles.titleText, styles.boldText, styles.centerText]}>BIOGRAFIE</Text>
@@ -174,10 +185,26 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   profileHeader: {
-    height: 120,
-    paddingTop: 65,
+    height: 130,
+    paddingTop: 30,
     paddingLeft: 10,
     backgroundColor: '#FFD014',
+    flex: 1,
+    flexDirection: 'row'
+  },
+  profileImage: {
+    height: 90,
+    width: 90,
+    borderColor: 'white',
+    borderWidth: 5,
+    borderTopLeftRadius: 4,
+    borderTopRightRadius: 4,
+    borderBottomLeftRadius: 4,
+    borderBottomRightRadius: 4,
+  },
+  profileName: {
+    padding: 10,
+    justifyContent: 'flex-end'
   },
   bioHeader: {
     height: 60,
