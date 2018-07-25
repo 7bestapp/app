@@ -2,16 +2,34 @@ import React from 'react';
 import {
   Text,
   View,
-  FlatList,
+  ScrollView,
   ActivityIndicator,
   StyleSheet
 } from 'react-native';
 
-export default class Team extends React.Component {
+import NewsItem from '../components/newsItem.js';
+
+export default class Profile extends React.Component {
 
   constructor(props){
     super(props);
-    this.state ={ isLoading: true}
+    this.state = {
+      isLoading: true,
+      news_items: [
+        {
+          title: 'Art Makes You Smart',
+          summary: 'Museum visits increase test scores, generate social responsibility and increase appreciation of the arts by students.',
+        },
+        {
+          title: 'Tension and Flaws Before Health Website Crash',
+          summary: 'Interviews and documents offer new details into how the rollout of President Obama\'s signature program turned into a major humiliation.',
+        },
+        {
+          title: '36 Hours in Charleston, S.C.',
+          summary: 'Crowds are thinner and temperatures are mild during winter in this..',
+        },
+      ]
+    }
   }
 
   componentDidMount(){
@@ -30,6 +48,12 @@ export default class Team extends React.Component {
       .catch((error) =>{
         console.error(error);
       });
+  }
+
+  renderNews() {
+    return this.state.news_items.map((news, index) => {
+      return <NewsItem key={index} index={index} news={news} />
+    });
   }
 
   render(){
@@ -93,17 +117,13 @@ export default class Team extends React.Component {
             <Text style={[styles.subText, styles.textCenter]}>TRIKOT NR</Text>
           </View>
         </View>
-
-          <FlatList
-          data={this.state.movies}
-          renderItem={({item}) => <Text>{item.title}</Text>}
-          keyExtractor={(item, index) => index}
-        />
+        <ScrollView style={styles.news_container}>
+          { this.renderNews() }
+        </ScrollView>
       </View>
     );
   }
 }
-
 
 const styles = StyleSheet.create({
   baseText: {
@@ -147,5 +167,10 @@ const styles = StyleSheet.create({
     height: 65,
     justifyContent: "center",
     alignItems: "center",
+  },
+  news_container: {
+    flex: 1,
+    margin: 10,
+    flexDirection: 'column',
   },
 });
