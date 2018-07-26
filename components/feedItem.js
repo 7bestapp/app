@@ -8,7 +8,13 @@ import {
   Image,
 } from 'react-native';
 
+import nodeEmoji from 'node-emoji';
+
 export default FeedItem = ({ feed, index }) => {
+
+  const muscle = nodeEmoji.get('muscle');
+  const clap = nodeEmoji.get('clap');
+  const fire = nodeEmoji.get('fire');
 
   return (
     <View style={styles.feedCard}>
@@ -33,9 +39,9 @@ export default FeedItem = ({ feed, index }) => {
         </View>
       </View>
       <View style={styles.cardSocial}>
-        <Text style={styles.social}>:muscle: {feed.muscles}</Text>
-        <Text style={styles.social}>:clap: {feed.claps}</Text>
-        <Text style={styles.social}>:fire: {feed.fires}</Text>
+        <Text style={styles.social}>{muscle} {feed.muscles}</Text>
+        <Text style={styles.social}>{clap} {feed.claps}</Text>
+        <Text style={styles.social}>{fire} {feed.fires}</Text>
       </View>
     </View>
   );
@@ -46,7 +52,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     backgroundColor: 'white',
-    borderColor: 'grey',
+    borderColor: '#F4F4F4',
     borderWidth: 1,
     margin: 15,
     marginBottom: 0,
@@ -127,9 +133,15 @@ const styles = StyleSheet.create({
     padding: 15,
   },
   social: {
-    flex: 1,
+    padding: 5,
+    marginRight: 10,
     fontFamily: 'Roboto',
     fontSize: 14,
+    backgroundColor: '#F4F4F4',
+    borderBottomLeftRadius: 4,
+    borderBottomRightRadius: 4,
+    borderTopLeftRadius: 4,
+    borderTopRightRadius: 4,
   }
 
 })
