@@ -57,7 +57,25 @@ export default class Profile extends React.Component {
           claps: '1',
           fires: '0',
         },
-      ]
+      ],
+      profile: {
+        "id":1,
+        "first_name":"Timo",
+        "last_name":"Trumpp",
+        "email":null,
+        "phone":null,
+        "position":"LINKSAUSSEN",
+        "hand":"RECHTS",
+        "birthyear":"1989",
+        "height":"183 CM",
+        "weight":"75 KG",
+        "country":"DEUTSCHLAND",
+        "fan_of":null,
+        "shirt_number":7,
+        "workouts":4,
+        "created_at":"2018-07-26T07:57:12.861Z",
+        "updated_at":"2018-07-26T07:57:12.861Z"
+      }
     }
   }
 
@@ -85,6 +103,20 @@ export default class Profile extends React.Component {
     });
   }
 
+  renderBioField(item, label) {
+    if (item) {
+      value = item
+    } else {
+      value = "N/A"
+    }
+    return (
+      <View style={styles.bioBox}>
+        <Text style={[styles.baseText, styles.textCenter]}>{value}</Text>
+        <Text style={[styles.subText, styles.textCenter]}>{label}</Text>
+      </View>
+    )
+  }
+
   render(){
 
     if(this.state.isLoading){
@@ -103,7 +135,7 @@ export default class Profile extends React.Component {
             source={{uri:'https://lh3.googleusercontent.com/-3NrXY56sup0/AAAAAAAAAAI/AAAAAAAAAAA/AAnnY7o763BeCFp-H6oUUOCwe2qEik0WoA/s192-c-mo/photo.jpg'}}
           />
           <View style={styles.profileName}>
-            <Text style={[styles.headerText, styles.boldText]}>Timo Trumpp</Text>
+            <Text style={[styles.headerText, styles.boldText]}>{this.state.profile.first_name} {this.state.profile.last_name}</Text>
             <Text style={styles.baseText}>TSV RSK Esslingen, C-Jugend</Text>
           </View>
         </View>
@@ -111,46 +143,19 @@ export default class Profile extends React.Component {
           <Text style={[styles.titleText, styles.boldText, styles.centerText]}>BIOGRAFIE</Text>
         </View>
         <View style={{flexDirection: 'row'}}>
-          <View style={styles.bioBox}>
-            <Text style={[styles.baseText, styles.textCenter]}>Halblinks</Text>
-            <Text style={[styles.subText, styles.textCenter]}>POSITION</Text>
-          </View>
-          <View style={styles.bioBox}>
-            <Text style={[styles.baseText, styles.textCenter]}>12</Text>
-            <Text style={[styles.subText, styles.textCenter]}>WORKOUTS</Text>
-          </View>
-          <View style={styles.bioBox}>
-            <Text style={[styles.baseText, styles.textCenter]}>Rechts</Text>
-            <Text style={[styles.subText, styles.textCenter]}>HAND</Text>
-          </View>
+            { this.renderBioField(this.state.profile.position, 'POSITION') }
+            { this.renderBioField(this.state.profile.workouts, 'WORKOUTS') }
+            { this.renderBioField(this.state.profile.hand, 'HAND') }
         </View>
         <View style={{flexDirection: 'row'}}>
-          <View style={styles.bioBox}>
-            <Text style={[styles.baseText, styles.textCenter]}>1989</Text>
-            <Text style={[styles.subText, styles.textCenter]}>JAHR</Text>
-          </View>
-          <View style={styles.bioBox}>
-            <Text style={[styles.baseText, styles.textCenter]}>183 CM</Text>
-            <Text style={[styles.subText, styles.textCenter]}>GRÖSSE</Text>
-          </View>
-          <View style={styles.bioBox}>
-            <Text style={[styles.baseText, styles.textCenter]}>N/A</Text>
-            <Text style={[styles.subText, styles.textCenter]}>GEWICHT</Text>
-          </View>
+            { this.renderBioField(this.state.profile.birthyear, 'JAHR') }
+            { this.renderBioField(this.state.profile.height, 'GRÖSSE') }
+            { this.renderBioField(this.state.profile.weight, 'GEWICHT') }
         </View>
         <View style={{flexDirection: 'row'}}>
-          <View style={styles.bioBox}>
-            <Text style={[styles.baseText, styles.textCenter]}>DEUTSCHLAND</Text>
-            <Text style={[styles.subText, styles.textCenter]}>LAND</Text>
-          </View>
-          <View style={styles.bioBox}>
-            <Text style={[styles.baseText, styles.textCenter]}>FÜCHSE</Text>
-            <Text style={[styles.subText, styles.textCenter]}>FAN</Text>
-          </View>
-          <View style={styles.bioBox}>
-            <Text style={[styles.baseText, styles.textCenter]}>7</Text>
-            <Text style={[styles.subText, styles.textCenter]}>TRIKOT NR</Text>
-          </View>
+          { this.renderBioField(this.state.profile.country, 'LAND') }
+          { this.renderBioField(this.state.profile.fan_of, 'FAN') }
+          { this.renderBioField(this.state.profile.shirt_number, 'TRIKOT NR') }
         </View>
         <View>
           { this.renderFeed() }
